@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <head>
+        
+        <meta charset="utf-8"> </meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+    <title> User Profile</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"> </link>
+    <link href="css/font-awesome.min.css" rel="stylesheet"></link>
+    <link href="css/prettyPhoto.css" rel="stylesheet"></link>
+    <link href="css/price-range.css" rel="stylesheet"></link>
+    <link href="css/animate.css" rel="stylesheet"></link>
+	<link href="css/main.css" rel="stylesheet"></link>
+        <link href="css/responsive.css" rel="stylesheet"></link>     
+    <link rel="shortcut icon" href="images/ico/favicon.ico"></link>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png"></link>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"></link>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"></link>
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png"></link>
+</head><!--/head-->
+
+<body>
+    
+     <!--/ check the session before it loads-->
+    <c:if
+        test="#{!customerController.checkSession()}"> 
+              <script type="text/javascript">
+                  alert("your are redirect to login");
+               window.location="login.xhtml";
+               </script>
+    </c:if>
+    
+    
+	<header id="header"><!--header-->
+		
+        <div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+                                                    <a href="index.xhtml" ><img src="images/logo.png" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+                                                            <li><a href="userAccount.xhtml"><i class="fa fa-user"></i>User Account</a></li>
+                                                            <li><a href="cart.xhtml"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                                            <li>
+                                                                <a>
+                                                                <h:form>
+                                                                     <a><i class="fa fa-user"></i>
+                                                                    <h:commandLink  id="logout" value="Logout"  action="#{customerController.logout()}"> </h:commandLink>
+                                                                     </a>
+                                                                </h:form>
+                                                                </a>    
+                                                            </li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+	
+		<div class="header-bottom"><!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+                                                            <li><a href="index.xhtml" class="active">Home</a></li>
+                                                            <li class="dropdown"><a href="shop.xhtml">Shop<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="shop.xhtml">Products</a></li>
+                                        <li><a href="prescriptionMedicine.xhtml">Ask for Prescription Medicine</a></li> 
+                                    </ul>
+                                </li> 
+                                                            <li><a href="aboutUs.xhtml">About Us</a></li>
+                                                            <li><a href="contactUs.xhtml">Contact</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="search_box pull-right">
+                                                  
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+	</header><!--/header-->
+	<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+						<h2>Your Current Profile</h2>
+						 <h:form>
+                                                <h:dataTable id="customerList" value="#{customerController.getAllCustomerProfile()}" var="customer" border="0">
+                                                    <h:column>
+                                                    
+                                                        <h:inputText  id="first" style="display:block;width:350px" value="#{customer.firstName}" > </h:inputText>
+                                                        <h:inputText  id="last" readonly="true"  style="display:block;width:350px" value="#{customer.lastName}" > </h:inputText>
+                                                        <h:inputText id="medicare" readonly="true" style="display:block;width:350px"  value="#{customer.medicareNumber}" > </h:inputText>
+                                                        <h:inputText id="email" readonly="true" style="display:block;width:350px"  value="#{customer.email}" > </h:inputText>
+                                                        <h:inputText id="state" readonly="true"  style="display:block;width:350px"  value="#{customer.stateName}" > </h:inputText>
+                                                        <h:inputText id="city" readonly="true" style="display:block;width:350px"  value="#{customer.city}" > </h:inputText>
+                                                        <h:inputText id="dateOfBirth" readonly="true" style="display:block;width:350px"  value="#{customer.dateOfBirth}" > 
+                                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                        </h:inputText>
+                                                        <h:inputText id="postcode" readonly="true" style="display:block;width:350px" value="#{customer.postCode}" > </h:inputText>
+                                                        <h:inputText id="address" readonly="true" style="display:block;width:350px" value="#{customer.address}" > </h:inputText>
+                                                        <h:inputText  id="phone" readonly="true" style="display:block;width:350px" value="#{customer.phone}" > </h:inputText>                                          
+                                                    </h:column>
+
+                                                </h:dataTable>
+                                                 </h:form>     
+					</div><!--/login form-->
+				</div>
+                                
+                                <div class="col-sm-1">
+					<h2 class="or">--></h2>
+				</div>
+                            
+                            
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h2>Edit Your Profile</h2>
+						<h:form id="customerForm">
+                                                     <h:panelGrid columns="1">   
+                                                         <h:inputText  id="first" a:placeholder="First Name" style="display:block;width:350px" value="#{customerController.customer.firstName}" > </h:inputText>
+                                                         <h:inputText  id="last" a:placeholder="Last Name" style="display:block;width:350px" value="#{customerController.customer.lastName}" > </h:inputText>
+                                                         <h:inputText  id="medicareId" a:placeholder="Medicare Number" style="display:block;width:350px" value="#{customerController.customer.medicareNumber}" > </h:inputText>
+                                                        <h:selectOneMenu style="display:block;width:350px" value="#{customerController.customer.stateName}">
+                                                            <f:selectItem itemValue="Queensland" itemLabel="Queensland" />
+                                                            <f:selectItem itemValue="New South Wales" itemLabel="New South Wales" />
+                                                            <f:selectItem itemValue="South Australia" itemLabel="South Australia" />
+                                                            <f:selectItem itemValue="Tasmania" itemLabel="Tasmania" />
+                                                            <f:selectItem itemValue="Victoria" itemLabel="Victoria" />
+                                                            <f:selectItem itemValue="Western Australia" itemLabel="Western Australia" />
+                                                        </h:selectOneMenu>
+                                                        <h:selectOneMenu style="display:block;width:350px" value="#{customerController.customer.city}">
+                                                            <f:selectItem itemValue="Brisbane" itemLabel="Brisbane" />
+                                                            <f:selectItem itemValue="Sydney" itemLabel="Sydney" />
+                                                            <f:selectItem itemValue="Adelaide" itemLabel="Adelaide" />
+                                                            <f:selectItem itemValue="Hobart" itemLabel="Hobart" />
+                                                            <f:selectItem itemValue="Melbourne" itemLabel="Melbourne" />
+                                                            <f:selectItem itemValue="Perth" itemLabel="Perth" />
+                                                        </h:selectOneMenu>
+                                                        
+                                                         <h:inputText id="postcode" a:placeholder="Post Code" style="display:block;width:350px" value="#{customerController.customer.postCode}" > </h:inputText>
+                                                        <h:inputText id="address" a:placeholder="address"  style="display:block;width:350px" value="#{customerController.customer.address}" > </h:inputText>
+                                                        <h:inputText  id="dateOfBirth" a:placeholder="Date of Birth" style="display:block;width:350px" value="#{customerController.customer.dateOfBirth}" > 
+                                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                        </h:inputText>
+                                                        <h:inputText  id="phone"  a:placeholder="Phone" style="display:block;width:350px" value="#{customerController.customer.phone}" > </h:inputText>
+                                                        <h:inputSecret  id="password" a:placeholder="Password"  style="display:block;width:350px" value="#{customerController.customer.password}" > </h:inputSecret>
+                                                        
+                                                         
+                                                     </h:panelGrid> 
+                                                        <br></br>
+                                                        <h:commandButton value="Update Profile" type="submit" class="btn btn-default" action="#{customerController.doUpdate()}" > </h:commandButton>
+						</h:form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+	
+	
+<footer id="footer"><!--Footer-->
+
+		<div class="footer-widget">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="single-widget">
+							<h2>Service</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="shop.xhtml">Over- The- Counter</a></li>
+                                                                <li><a href="prescriptionMedicine.xhtml">Prescription Medicine</a></li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="col-sm-4">
+						<div class="single-widget">
+							<h2>Policies</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Terms of Use</a></li>
+								<li><a href="#">Privacy and  Policy</a></li>
+								<li><a href="#">Billing System</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="single-widget">
+							<h2>About Company</h2>
+							<ul class="nav nav-pills nav-stacked">
+                                                            <li><a href="aboutUs.xhtml">Company Information</a></li>
+                                                                <li><a href="contactUs.xhtml">Store Location</a></li>
+								<li><a href="#">Copyright</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">Copyright © 2017 7Days Chemist Inc. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+		
+	</footer><!--/Footer-->
+
+  
+    <script src="js/jquery.js"></script>
+	<script src="js/price-range.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <head>
+        <meta charset="utf-8"> </meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+    <title>Contact | 7Days Chemist</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"> </link>
+    <link href="css/font-awesome.min.css" rel="stylesheet"></link>
+    <link href="css/prettyPhoto.css" rel="stylesheet"></link>
+    <link href="css/price-range.css" rel="stylesheet"></link>
+    <link href="css/animate.css" rel="stylesheet"></link>
+	<link href="css/main.css" rel="stylesheet"></link>
+	<link href="css/responsive.css" rel="stylesheet"></link>     
+    <link rel="shortcut icon" href="images/ico/favicon.ico"></link>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png"></link>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"></link>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"></link>
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png"></link>
+</head><!--/head-->
+<body> 
+	
+<header id="header"><!--header-->
+		
+        <div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+                                                    <a href="index.xhtml" ><img src="images/logo.png" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+                                                            <li><a href="userAccount.xhtml"><i class="fa fa-user"></i>User Account</a></li>
+                                                            <li><a href="cart.xhtml"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                                            <li><a href="login.xhtml"><i class="fa fa-lock"></i> Login</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+	
+		<div class="header-bottom"><!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+                                                            <li><a href="index.xhtml" class="active">Home</a></li>
+                                                            <li class="dropdown"><a href="shop.xhtml">Shop<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="shop.xhtml">Products</a></li>
+                                        <li><a href="prescriptionMedicine.xhtml">Ask for Prescription Medicine</a></li> 
+                                    </ul>
+                                </li> 
+                                                            <li><a href="aboutUs.xhtml">About Us</a></li>
+                                                            <li><a href="contactUs.xhtml">Contact</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="search_box pull-right">
+							<input type="text" placeholder="Search"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+	</header><!--/header-->
+	 
+	 <div id="contact-page" class="container">
+    	<div class="bg">
+	    	<div class="row">    		
+	    		<div class="col-sm-12">    			   			
+					<h2 class="title text-center">Contact <strong>Us</strong></h2>    			    				    				
+                    <div id="map" class="contact-map">
+                    
+                    </div>
+				</div>			 		
+			</div>    	
+    		<div class="row">  	
+	    		<div class="col-sm-8">
+	    			<div class="contact-form">
+	    				<h2 class="title text-center">Get In Touch</h2>
+	    				<div class="status alert alert-success" style="display: none"></div>
+
+                                        <h:form id="customerForm" class="contact-form row">
+                                                     <h:panelGrid columns="1">   
+                                                         <div class="form-group col-md-6">
+                                                             <h:inputText  id="first" a:placeholder="name" class="form-control" value="#{contactUsController.contact.username}" > </h:inputText>
+                                                         </div>
+                                                        <div class="form-group col-md-6">
+                                                            <h:inputText id="email"  class="form-control" a:placeholder="Email Address"   value="#{contactUsController.contact.email}" > </h:inputText>
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                          
+                                                            <h:inputTextarea id="myTextarea" class="form-control" a:placeholder="Your Message Here" cols="60" rows="60" value="#{contactUsController.contact.message}" />
+                                                         </div>                        
+                                                     </h:panelGrid> 
+                                                        <br></br>
+                                                         <div class="form-group col-md-12">
+                                                             <h:commandButton value="Submit" type="submit" class="btn btn-primary pull-right" action="#{contactUsController.doCreate()}" > </h:commandButton>
+                                                         </div>
+                                        </h:form>
+	    			</div>
+	    		</div>
+	    		<div class="col-sm-4">
+	    			<div class="contact-info">
+	    				<h2 class="title text-center">Contact Info</h2>
+	    				<address>
+	    					<p>7 Days Chemist</p>
+							<p>140 Ann St</p>
+							<p>Brisbane Australia</p>
+							<p>Mobile: </p>
+							<p>Email: info@7dayschemist.com.au</p>
+	    				</address>
+	    			</div>
+    			</div>    			
+	    	</div>  
+    	</div>	
+    </div><!--/#contact-page-->
+	
+	<footer id="footer"><!--Footer-->
+
+		<div class="footer-widget">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="single-widget">
+							<h2>Service</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="shop.xhtml">Over- The- Counter</a></li>
+                                                                <li><a href="prescriptionMedicine.xhtml">Prescription Medicine</a></li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="col-sm-4">
+						<div class="single-widget">
+							<h2>Policies</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Terms of Use</a></li>
+								<li><a href="#">Privacy and  Policy</a></li>
+								<li><a href="#">Billing System</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="single-widget">
+							<h2>About Company</h2>
+							<ul class="nav nav-pills nav-stacked">
+                                                            <li><a href="aboutUs.xhtml">Company Information</a></li>
+                                                                <li><a href="contactUs.xhtml">Store Location</a></li>
+								<li><a href="#">Copyright</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">Copyright © 2017 7Days Chemist Inc. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+		
+	</footer><!--/Footer-->
+    <script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript" src="js/gmaps.js"></script>
+	<script src="js/contact.js"></script>
+	<script src="js/price-range.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript">
+        function myMap() {
+              var myCenter = new google.maps.LatLng(-27.467309, 153.024322);
+              var mapCanvas = document.getElementById("map");
+              var mapOptions = {center: myCenter, zoom: 18};
+              var map = new google.maps.Map(mapCanvas, mapOptions);
+              var marker = new google.maps.Marker({position:myCenter});
+              marker.setMap(map);
+        }
+</script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA6C8nAArPh34gKDCBq2eBRpPa77Wqj3o;callback=myMap();">
+        
+    </script>
+</body>
+</html>

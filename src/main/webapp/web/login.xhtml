@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+ xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+    <meta charset="utf-8"> </meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+    <title>Login | 7Days Chemist</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"> </link>
+    <link href="css/font-awesome.min.css" rel="stylesheet"></link>
+    <link href="css/prettyPhoto.css" rel="stylesheet"></link>
+    <link href="css/price-range.css" rel="stylesheet"></link>
+    <link href="css/animate.css" rel="stylesheet"></link>
+	<link href="css/main.css" rel="stylesheet"></link>
+	<link href="css/responsive.css" rel="stylesheet"></link> 
+    <link rel="shortcut icon" href="images/ico/favicon.ico"></link>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png"></link>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"></link>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"></link>
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png"></link>
+    <script src="js/formValidation.js" type="text/javascript"></script>
+    </h:head><!--/head-->
+
+<h:body>
+    
+     <!--/ will use to clear form after submit -->
+    <script language="JavaScript" type="text/javascript"> 
+            function submitForm()
+            {
+                var frm = document.getElementsByName('customerForm')[0];
+                frm.reset();  // Reset  
+             }
+    </script>
+    
+    <!--/ check the session before it loads and redirect to the userAccount if found customer session-->
+    <c:if test="#{customerController.checkSession()}"> 
+        <script type="text/javascript">
+               window.location="userAccount.xhtml";
+               </script>
+    </c:if>
+    
+    <!--/ check the session before it loads and redirect to the adminPanel if found admin session-->
+    <c:if test="#{adminController.checkSession()}"> 
+        <script type="text/javascript">
+               window.location="adminPanel.xhtml";
+               </script>
+    </c:if>
+
+	<header id="header"><!--header-->
+		
+        <div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+                                                    <a href="index.xhtml" ><img src="images/logo.png" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+                                                           
+                                                            <li><a href="userAccount.xhtml" ><i class="fa fa-user"></i>User Account</a> </li>                                                     
+                                                            <li><a href="cart.xhtml"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                                            <li><a href="login.xhtml"><i class="fa fa-lock"></i> Login</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+	
+		<div class="header-bottom"><!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+                                                            <li><a href="index.xhtml" class="active">Home</a></li>
+                                                            <li class="dropdown"><a href="shop.xhtml">Shop<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="shop.xhtml">Products</a></li>
+                                        <li><a href="prescriptionMedicine.xhtml">Ask for Prescription Medicine</a></li> 
+                                    </ul>
+                                </li> 
+                                                            <li><a href="aboutUs.xhtml">About Us</a></li>
+                                                            <li><a href="contactUs.xhtml">Contact</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="search_box pull-right">
+							<input type="text" placeholder="Search"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+	</header><!--/header-->
+	<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+                            
+                                <div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h2>New User Sign up!</h2>
+						<h:form id="customerForm" >
+                                                     <h:panelGrid columns="2">  
+                                                         <h:inputText  id="id" rendered="false" value="#{customerController.customer.id}" > </h:inputText>
+                                                         
+                                                         <h:inputText  id="first" a:placeholder="First Name" style="display:block;width:350px" value="#{customerController.customer.firstName}" required="true" requiredMessage="First Name is required" > 
+                                                         </h:inputText>
+                                                         <h:message id="msgFirst" for="first" style="color:red;display:block;width:350px" /> 
+                                                         
+                                                         <h:inputText  id="last" a:placeholder="Last Name" style="display:block;width:350px" value="#{customerController.customer.lastName}" required="true" requiredMessage="Last Name is required"> </h:inputText>
+                                                         <h:message id="msgLast" for="last" style="color:red;display:block;width:350px"/>
+                                                         
+                                                         <h:inputText  id="medicareId" a:placeholder="Medicare Number" style="display:block;width:350px" value="#{customerController.customer.medicareNumber}" required="true" requiredMessage="Medicare Number is required"> </h:inputText>
+                                                         <h:message id="msgmedicareId" for="medicareId" style="color:red;display:block;width:350px"/>
+                                                         
+                                                         <h:inputText id="email" a:placeholder="Email Address" style="display:block;width:350px"  value="#{customerController.customer.email}" required="true" requiredMessage="Email Address is required"> </h:inputText>
+                                                         <h:message id="msgEmail" for="email" style="color:red;display:block;width:350px"/>
+                                                         
+                                                         <h:selectOneMenu id="state" style="display:block;width:350px" value="#{customerController.customer.stateName}" required="true" requiredMessage="State is required">
+                                                            <f:selectItem itemValue="Queensland" itemLabel="Queensland" />
+                                                            <f:selectItem itemValue="New South Wales" itemLabel="New South Wales" />
+                                                            <f:selectItem itemValue="South Australia" itemLabel="South Australia" />
+                                                            <f:selectItem itemValue="Tasmania" itemLabel="Tasmania" />
+                                                            <f:selectItem itemValue="Victoria" itemLabel="Victoria" />
+                                                            <f:selectItem itemValue="Western Australia" itemLabel="Western Australia" />
+                                                         </h:selectOneMenu>
+                                                         <h:message id="masgState" for="state" style="color:red;display:block;width:350px"/>
+                                                        
+                                                         <h:selectOneMenu id="city" style="display:block;width:350px" value="#{customerController.customer.city}" required="true" requiredMessage="City is required">
+                                                            <f:selectItem itemValue="Brisbane" itemLabel="Brisbane" />
+                                                            <f:selectItem itemValue="Sydney" itemLabel="Sydney" />
+                                                            <f:selectItem itemValue="Adelaide" itemLabel="Adelaide" />
+                                                            <f:selectItem itemValue="Hobart" itemLabel="Hobart" />
+                                                            <f:selectItem itemValue="Melbourne" itemLabel="Melbourne" />
+                                                            <f:selectItem itemValue="Perth" itemLabel="Perth" />
+                                                         </h:selectOneMenu>
+                                                        <h:message id="msgCity" for="city" style="color:red;display:block;width:350px"/>
+                                                         
+                                                        <h:inputText id="postcode" a:placeholder="Post Code" style="display:block;width:350px" value="#{customerController.customer.postCode}" required="true" requiredMessage="Postcode is required"> </h:inputText>
+                                                         <h:message id="msgPostcode" for="postcode" style="color:red;display:block;width:350px"/>
+                                                         
+                                                         <h:inputText id="address" a:placeholder="address"  style="display:block;width:350px" value="#{customerController.customer.address}" required="true" requiredMessage="Address is required"> </h:inputText>
+                                                         <h:message id="msgAddress" for="address" style="color:red;display:block;width:350px"/>
+
+                                                         <h:inputText  id="dateOfBirth" a:placeholder="Date of Birth e.g 12/6/1990" style="display:block;width:350px" value="#{customerController.customer.dateOfBirth}" required="true" requiredMessage="Date of Birth is required" >
+                                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                         </h:inputText>
+                                                         <h:message id="msgDOB" for="dateOfBirth" style="color:red;display:block;width:350px"/>
+                                                         
+                                                         <h:inputText  id="phone"  a:placeholder="Phone" style="display:block;width:350px" value="#{customerController.customer.phone}" required="true" requiredMessage="Phone is required" > </h:inputText>
+                                                         <h:message id="msgPhone" for="phone" style="color:red;display:block;width:350px"/>
+                                                         
+                                                         <h:inputSecret  id="password" a:placeholder="Password"  style="display:block;width:350px" value="#{customerController.customer.password}" required="true" requiredMessage="Password is required" > </h:inputSecret>
+                                                         <h:message id="msgPassword" for="password" style="color:red;display:block;width:350px"/>
+                                                         
+                                                     </h:panelGrid> 
+                                                        <br></br>
+                                                        
+                                                        <h:commandButton id="customerSignupBtn" value="Sign up" type="submit" class="btn btn-primary pull-right"  action="#{customerController.doCreate()}"  > 
+
+                                                        </h:commandButton>
+                                                        
+						</h:form>
+					</div><!--/Customer sign up form-->
+				</div>
+				<div class="col-sm-1">
+					<h2 class="or">OR</h2>
+				</div>
+				
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <div class="login-form"><!--login form-->
+                                    <h2>Login to your account</h2>
+
+                                    <h:form>
+                                        <h:inputText id="email" a:placeholder="Enter Username" value="#{customerController.customer.email}" />
+                                        <h:inputSecret id="password" a:placeholder="Enter Password" value="#{customerController.customer.password}" />                                                   
+                                        <h:commandButton id="login" class="btn btn-primary pull-right" value="login" action="#{customerController.doLogin()}" />
+                                    </h:form>
+                                </div><!--/ Customer login form-->
+                            </div>
+                            
+			</div>
+		</div>
+	</section><!--/form-->
+	
+	
+	<footer id="footer"><!--Footer-->
+
+		<div class="footer-widget">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="single-widget">
+							<h2>Service</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="shop.xhtml">Over- The- Counter</a></li>
+                                                                <li><a href="prescriptionMedicine.xhtml">Prescription Medicine</a></li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="col-sm-4">
+						<div class="single-widget">
+							<h2>Policies</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Terms of Use</a></li>
+								<li><a href="#">Privacy and  Policy</a></li>
+								<li><a href="#">Billing System</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="single-widget">
+							<h2>About Company</h2>
+							<ul class="nav nav-pills nav-stacked">
+                                                            <li><a href="aboutUs.xhtml">Company Information</a></li>
+                                                                <li><a href="contactUs.xhtml">Store Location</a></li>
+								<li><a href="#">Copyright</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">Copyright © 2017 7Days Chemist Inc. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+		
+	</footer><!--/Footer-->
+
+  
+    <script src="js/jquery.js"></script>
+	<script src="js/price-range.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+</h:body>
+</html>
